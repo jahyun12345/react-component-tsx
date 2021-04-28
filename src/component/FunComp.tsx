@@ -18,11 +18,15 @@ export default function FuncComp(props:FuncProps) {
   var [number, setNumber] = useState(props.initNumber);
   var [_date, setDate] = useState((new Date()).toString());
 
-  // classcomponent componentDidMount / componentDidUpdate 와 같은 역할
+  // classcomponent componentDidMount / componentDidUpdate 와 같은 역할(내부에 정의)
   // side-effect : render와 같은 주요 작업에서 벗어나는 작업들
   useEffect(function() {
     console.log('%cfunc => useEffect (componentDidMount & componentDidUpdate) ' + (++funcId), funcStyle);
-    // document.title = number + _date;
+    // classcomponent componentWillUnmount 와 같은 역할(정리 : clean-up)
+    // function() 반환 : render 이후 실행
+    return function() {
+      console.log('%cfunc => useEffect return ' + (++funcId), funcStyle);
+    }
   });
 
   console.log('%cfunc => render ' + (++funcId), funcStyle);
