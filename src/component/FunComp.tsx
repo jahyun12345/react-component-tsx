@@ -25,9 +25,34 @@ export default function FuncComp(props:FuncProps) {
     // classcomponent componentWillUnmount 와 같은 역할(정리 : clean-up)
     // function() 반환 : render 이후 실행
     return function() {
-      console.log('%cfunc => useEffect return ' + (++funcId), funcStyle);
+      console.log('%cfunc => useEffect return (componentDidMount & componentDidUpdate) ' + (++funcId), funcStyle);
     }
   });
+  
+  // classcomponent componentDidMount 와 같은 역할(내부에 정의)
+  useEffect(function() {
+    console.log('%cfunc => useEffect (componentDidMount) ' + (++funcId), funcStyle);
+    return function() {
+      console.log('%cfunc => useEffect return (componentWillUnmount) ' + (++funcId), funcStyle);
+    }
+  // [] : 빈 배열인 경우 component 생성 될 때 한 번만 호출
+  }, []);
+
+  // [] 내의 상태 값인 number가 변경되었을 때에만 useEffect 내의 call-back 함수 호출 됨
+  useEffect(function() {
+    console.log('%cfunc => useEffect number (componentDidMount & componentDidUpdate) ' + (++funcId), funcStyle);
+    return function() {
+      console.log('%cfunc => useEffect number return (componentDidMount & componentDidUpdate) ' + (++funcId), funcStyle);
+    }
+  }, [number]);
+
+  // [] 내의 상태 값인 _date가 변경되었을 때에만 useEffect 내의 call-back 함수 호출 됨
+  useEffect(function() {
+    console.log('%cfunc => useEffect _date (componentDidMount & componentDidUpdate) ' + (++funcId), funcStyle);
+    return function() {
+      console.log('%cfunc => useEffect _date return (componentDidMount & componentDidUpdate) ' + (++funcId), funcStyle);
+    }
+  }, [_date]);
 
   console.log('%cfunc => render ' + (++funcId), funcStyle);
   return (
