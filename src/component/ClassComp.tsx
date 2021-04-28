@@ -8,7 +8,7 @@ interface ClassState {
   number:number,
   _date:string
 }
-
+var classStyle = 'color:red';
 // class component : render() method 필요로 함
 export default class ClassComp extends React.Component<ClassProps, ClassState> {
   state:ClassState = {
@@ -16,28 +16,27 @@ export default class ClassComp extends React.Component<ClassProps, ClassState> {
     _date:(new Date()).toString()
   }
 
-  classStyle = 'color:red';
   // render 이전 실행
   componentWillMount() {
-    console.log('%cclass => componentWillMount', this.classStyle);
+    console.log('%cclass => componentWillMount', classStyle);
   }
   // render 이후 실행
   componentDidMount() {
-    console.log('%cclass => componentDidMount', this.classStyle);
+    console.log('%cclass => componentDidMount', classStyle);
   }
   // render 호출할 필요가 있는지 결정
   // true : render 호출 / false : render 호출 X
   shouldComponentUpdate(nextProps:any, nextState:any) {
-    console.log('%cclass => shouldComponentUpdate', this.classStyle);
+    console.log('%cclass => shouldComponentUpdate', classStyle);
     return true;
   }
   // 상태 변경 후 render 이전 실행
   componentWillUpdate(nextProps:any, nextState:any) {
-    console.log('%cclass => componentWillUpdate', this.classStyle);
+    console.log('%cclass => componentWillUpdate', classStyle);
   }
   // 상태 변경 후 render 이후 실행
   componentDidUpdate(nextProps:any, nextState:any) {
-    console.log('%cclass => componentDidUpdate', this.classStyle);
+    console.log('%cclass => componentDidUpdate', classStyle);
   }
 
   clickEventHandle() {
@@ -47,7 +46,7 @@ export default class ClassComp extends React.Component<ClassProps, ClassState> {
   // state 값이 바뀜에 따라 render() 호출
   // => 바뀐 결과 반영
   render() {
-    console.log('%cclass => render', this.classStyle);
+    console.log('%cclass => render', classStyle);
     return (
       <div className="container">
         <h2>class style component</h2>

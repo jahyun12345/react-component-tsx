@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 interface FuncProps {
   initNumber:number
 }
 
+var funcStyle = 'color:blue';
+var funcId = 0;
 // function component : 자기자신이 render() method
 export default function FuncComp(props:FuncProps) {
   // // useState({defaultValue}) : state 값의 기본 값 대입하여 설정
@@ -16,6 +18,14 @@ export default function FuncComp(props:FuncProps) {
   var [number, setNumber] = useState(props.initNumber);
   var [_date, setDate] = useState((new Date()).toString());
 
+  // classcomponent componentDidMount / componentDidUpdate 와 같은 역할
+  // side-effect : render와 같은 주요 작업에서 벗어나는 작업들
+  useEffect(function() {
+    console.log('%cfunc => useEffect (componentDidMount & componentDidUpdate) ' + (++funcId), funcStyle);
+    // document.title = number + _date;
+  });
+
+  console.log('%cfunc => render ' + (++funcId), funcStyle);
   return (
     <div className="container">
       <h2>function style component</h2>
