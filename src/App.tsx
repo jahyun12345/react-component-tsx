@@ -7,8 +7,8 @@ function App() {
   return (
     <div className="container">
       <h1>Hello world</h1>
-      <FuncComp />
-      <ClassComp />
+      <FuncComp initNumber={12345} />
+      <ClassComp initNumber={12345} />
     </div>
   );
 }
