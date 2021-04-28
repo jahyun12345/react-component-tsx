@@ -38,6 +38,11 @@ export default class ClassComp extends React.Component<ClassProps, ClassState> {
   componentDidUpdate(nextProps:any, nextState:any) {
     console.log('%cclass => componentDidUpdate', classStyle);
   }
+  // unmount 이후 실행
+  componentWillUnmount() {
+    console.log('%cclass => componentWillUnmount', classStyle);
+  }
+  
 
   clickEventHandle() {
     this.setState({number:Math.random()});
